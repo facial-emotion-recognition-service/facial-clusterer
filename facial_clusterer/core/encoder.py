@@ -21,7 +21,7 @@ class Encoder:
         encoding = face_recognition.face_encodings(img, coords)
         # build a dictionary of the image path, bounding box location,
         # and facial encoding
-        d = {"imagePath": img_path, "encoding": encoding}
+        d = {"imagePath": img_path, "encoding": encoding[0]}
 
         return d
 

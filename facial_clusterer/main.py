@@ -8,5 +8,6 @@ if __name__ == "__main__":
     encodings = encoder.get_encodings(dir_)
 
     clusterer = Clusterer()
-    results = clusterer.get_clusters(encodings)
+    results = clusterer.get_clusters(encodings, include_unidentified_faces=1)
     print(results)
+    print("done")
