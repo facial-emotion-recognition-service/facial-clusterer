@@ -12,13 +12,15 @@ class Encoder:
 
     def get_encoding(self, img_path):
         """Get encoding for a single image."""
-        img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+        img = cv2.cvtColor(
+            cv2.imread(img_path), cv2.COLOR_BGR2RGB
+        )  # since we're not displaying the image, is the encoding impacted by color?
         h, w, _ = img.shape
-        coords = [(0, w, h, 0)]  ## check this '''(top, right, bottom, left)'''
+        coords = [(0, w, h, 0)]
 
         encoding = face_recognition.face_encodings(img, coords)
         # build a dictionary of the image path, bounding box location,
-        # and facial encodings for the current image
+        # and facial encoding
         d = {"imagePath": img_path, "encoding": encoding}
 
         return d

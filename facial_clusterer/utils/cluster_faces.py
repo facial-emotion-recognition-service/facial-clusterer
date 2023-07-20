@@ -3,7 +3,6 @@ import numpy as np
 import pickle
 import cv2
 import os
-from human_emotion.core.predictors import Predictor
 
 
 COLOR_LIST = [
