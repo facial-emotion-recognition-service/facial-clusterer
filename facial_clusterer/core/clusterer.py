@@ -30,6 +30,7 @@ class Clusterer:
 
         faces = {}
         for idx, label in enumerate(cluster.labels_):
+            label = int(label)
             if label in faces.keys():
                 faces[label].append(img_paths[idx])
             else:
