@@ -12,8 +12,6 @@ RUN pip install .
 
 EXPOSE 8000
 
-WORKDIR /facial_clusterer
-
 WORKDIR /facial_clusterer/interface
 
 CMD ["python", "main_server.py", "runserver", "0.0.0.0:8000"]
