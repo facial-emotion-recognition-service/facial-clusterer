@@ -1,4 +1,4 @@
-import os, sys
+import sys
 
 from app_config_provider import AppConfigProvider
 from args_provider import ArgsProvider
