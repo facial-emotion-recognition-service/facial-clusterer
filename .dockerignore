@@ -1,2 +1,7 @@
+# Scripts
 **/main.py
 **/utils/
+
+# System files
+**/.DS_Store
+**/__pycache__/
