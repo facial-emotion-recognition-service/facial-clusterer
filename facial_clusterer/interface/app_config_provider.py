@@ -3,7 +3,7 @@ import os
 
 class AppConfigProvider:
     def __init__(self):
-        self._input_faces = os.path.join(
+        self._input_faces_dir = os.path.join(
             os.environ.get("IMAGE_INPUT_DIR", "../input_images/"), "faces"
         )
         self._json_output_dir = os.environ.get(
@@ -13,7 +13,7 @@ class AppConfigProvider:
     @property
     def app_config(self):
         result = {
-            "input_faces": self._input_faces,
+            "input_faces_dir": self._input_faces_dir,
             "json_output_dir": self._json_output_dir,
         }
 

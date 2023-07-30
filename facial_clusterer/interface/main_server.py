@@ -1,9 +1,6 @@
 import os, sys
 
-sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-
 from app_config_provider import AppConfigProvider
-from model_config_provider import ModelConfigProvider
 from args_provider import ArgsProvider
 from app_logic import AppLogic
 
@@ -24,31 +21,24 @@ def getHello(request):
     return HttpResponse("<h1>Hello from server!</h1>")
 
 
-def getEmotionsFromImage(request, face_image_file):
-    print("Server.getEmotionsFromImage.name = " + face_image_file)
-    app.get_face_emotions_from_file(face_image_file, 8, "text")
-    return HttpResponse("getEmotionsFromImage " + face_image_file)
+def getFaceClusters(request):
+    json_result = app.get_clusters()
+    return HttpResponse(json_result)
 
 
 urlpatterns = [
     path(r"hello", getHello),
-    path(r"emotions/<face_image_file>", getEmotionsFromImage, name="some-name"),
+    path(r"clusters", getFaceClusters, name="some-name"),
 ]
 
 if __name__ == "__main__":
     appConfigProvider = AppConfigProvider()
     app_config = appConfigProvider.app_config
-    model_config_path = app_config["config_path"]
-    modelConfigProvider = ModelConfigProvider(model_config_path)
     argsProvider = ArgsProvider()
 
-    config_path = app_config["config_path"]
-    model_path = app_config["model_path"]
-    image_input_dir = app_config["image_input_dir"]
+    input_faces_dir = app_config["input_faces_dir"]
     json_output_dir = app_config["json_output_dir"]
 
-    model_config = modelConfigProvider.config_data
-
-    app = AppLogic(model_path, image_input_dir, json_output_dir, model_config)
+    app = AppLogic(input_faces_dir, json_output_dir)
 
     execute_from_command_line(sys.argv)
