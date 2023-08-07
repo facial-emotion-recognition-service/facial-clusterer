@@ -1,19 +1,21 @@
 import json
+import os
 from pathlib import Path
 from facial_clusterer.core.encoder import Encoder
 from facial_clusterer.core.clusterer import Clusterer
 
 
 class AppLogic:
-    def __init__(self, input_faces_dir, json_output_dir):
-        self.input_faces_dir = Path(input_faces_dir)
+    def __init__(self, image_input_dir, json_output_dir):
+        self.image_input_dir = Path(image_input_dir)
         self.json_output_dir = Path(json_output_dir)
         self.encoder = Encoder()
 
         self.clusterer = Clusterer()
 
     def get_clusters(self, include_unidentified_faces=1):
-        encodings = self.encoder.get_encodings(self.input_faces_dir)
+        input_faces_dir = os.path.join(self.image_input_dir, "faces")
+        encodings = self.encoder.get_encodings(input_faces_dir)
         result = self.clusterer.get_clusters(
             encodings, include_unidentified_faces
         )
