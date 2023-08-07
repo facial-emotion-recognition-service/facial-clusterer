@@ -21,14 +21,14 @@ def getHello(request):
     return HttpResponse("<h1>Hello from server!</h1>")
 
 
-def getFaceClusters(request):
-    json_result = app.get_clusters()
+def getFaceClusters(request, faces_dir):
+    json_result = app.get_clusters(faces_dir)
     return HttpResponse(json_result)
 
 
 urlpatterns = [
     path(r"hello", getHello),
-    path(r"clusters", getFaceClusters, name="some-name"),
+    path(r"clusters/<faces_dir>", getFaceClusters, name="some-name"),
 ]
 
 if __name__ == "__main__":

@@ -13,4 +13,4 @@ if __name__ == "__main__":
     args = argsProvider.getArgs()
 
     app = AppLogic(image_input_dir, json_output_dir)
-    app.get_clusters(args.include_unidentified_faces)
+    app.get_clusters(args.faces_dir, args.include_unidentified_faces)
