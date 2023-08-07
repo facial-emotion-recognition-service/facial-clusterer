@@ -22,7 +22,7 @@ class AppLogic:
         print(result)
 
         json_str = json.dumps(result, indent=4)
-        json_filename = "clusters.json"
+        json_filename = faces_dir + ".json"
         json_file_path = Path(self.json_output_dir, json_filename)
         with open(json_file_path, "w") as f:
             f.write(json_str)
