@@ -21,14 +21,14 @@ def getHello(request):
     return HttpResponse("<h1>Hello from server!</h1>")
 
 
-def getFaceClusters(request):
-    json_result = app.get_clusters()
+def getFaceClusters(request, faces_dir):
+    json_result = app.get_clusters(faces_dir)
     return HttpResponse(json_result)
 
 
 urlpatterns = [
     path(r"hello", getHello),
-    path(r"clusters", getFaceClusters, name="some-name"),
+    path(r"clusters/<faces_dir>", getFaceClusters, name="some-name"),
 ]
 
 if __name__ == "__main__":
@@ -36,9 +36,9 @@ if __name__ == "__main__":
     app_config = appConfigProvider.app_config
     argsProvider = ArgsProvider()
 
-    input_faces_dir = app_config["input_faces_dir"]
+    image_input_dir = app_config["image_input_dir"]
     json_output_dir = app_config["json_output_dir"]
 
-    app = AppLogic(input_faces_dir, json_output_dir)
+    app = AppLogic(image_input_dir, json_output_dir)
 
     execute_from_command_line(sys.argv)

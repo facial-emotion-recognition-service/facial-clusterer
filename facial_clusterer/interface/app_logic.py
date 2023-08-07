@@ -13,8 +13,8 @@ class AppLogic:
 
         self.clusterer = Clusterer()
 
-    def get_clusters(self, include_unidentified_faces=1):
-        input_faces_dir = os.path.join(self.image_input_dir, "faces")
+    def get_clusters(self, faces_dir, include_unidentified_faces=1):
+        input_faces_dir = os.path.join(self.image_input_dir, faces_dir)
         encodings = self.encoder.get_encodings(input_faces_dir)
         result = self.clusterer.get_clusters(
             encodings, include_unidentified_faces
